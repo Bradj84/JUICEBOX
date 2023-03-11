@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/Bradj84/JUICEBOX#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
     "pg": "^8.9.0"
   },
