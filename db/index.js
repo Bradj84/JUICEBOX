@@ -9,7 +9,7 @@ module.exports = {
 const username = 'postgres';
 const password = 'password';
 const port = 6542;
-const client = new Client('postgres://${username}:${password}@localhost:${port}/juicebox-dev');
+const Client = new Client('postgres://${username}:${password}@localhost:${port}/juicebox-dev');
 async function createUser({ 
     username, 
     password,
