@@ -6,7 +6,10 @@ const client = new Client('postgres://postgres:password@localhost:6542/JUICEBOX-
 module.exports = {
   client,
 }
-
+const username = 'postgres';
+const password = 'password';
+const port = 6542;
+const client = new Client('postgres://${username}:${password}@localhost:${port}/juicebox-dev');
 async function createUser({ 
     username, 
     password,
@@ -356,6 +359,24 @@ async function createUser({
     }
   }
 
+  async function getPostsByTagName(tagName) {
+    try {
+      const { rows: postIds } = await client.query(`
+        SELECT posts.id
+        FROM posts
+        JOIN post_tags ON posts.id=post_tags."postId"
+        JOIN tags ON tags.id=post_tags."tagId"
+        WHERE tags.name=$1;
+      `, [tagName]);
+  
+      return await Promise.all(postIds.map(
+        post => getPostById(post.id)
+      ));
+    } catch (error) {
+      throw error;
+    }
+  } 
+
   
   
   module.exports = {  
@@ -373,6 +394,7 @@ async function createUser({
     getPostById,
     createPostTag,
     getAllTags,
-    getUserByUsername
+    getUserByUsername,
+    getPostsByTagName
     
   }
