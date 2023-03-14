@@ -1,5 +1,6 @@
+
 const {  
-  client,
+ client, 
   createUser,
   updateUser,
   getAllUsers,
@@ -13,6 +14,7 @@ const {
   getPostById,
   createPostTag
   } = require('./index');
+  console.log("connection", process.env.DATABASE_URL)
   
   async function dropTables() {
     try {
