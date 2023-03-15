@@ -1,5 +1,5 @@
-require('dotenv').config();
-
+require('dotenv').config({path: '/.env'});
+console.log(process.env.JWT_SECRET)
 const PORT = 3000;
 const express = require('express');
 const server = express();

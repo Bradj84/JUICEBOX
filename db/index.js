@@ -1,4 +1,5 @@
-const { Client } = require('pg'); // imports the pg module
+require('dotenv').config("../.env")
+const { Client, Connection } = require('pg'); // imports the pg module
 
 // supply the db name and location of the database
 //const client = new Client('postgres://postgres:password@localhost:6542/JUICEBOX-DEV');
@@ -10,6 +11,7 @@ const username = 'postgres';
 const password = 'password';
 const port = 6542;
 const client = new Client(process.env.DATABASE_URL);
+
 async function createUser({ 
     username, 
     password,
